@@ -49,11 +49,11 @@ const routes = [
 	// 	name: "Edit Product",
 	// 	component: EditProduct,
 	// },
-	// {
-	// 	path: "/product/:id/view",
-	// 	name: "Business Product",
-	// 	component: UniqueProductPage,
-	// },
+	{
+		path: "/product/:id/view",
+		name: "Business Product",
+		component: UniqueProductPage,
+	},
 	// {
 	// 	path: "/submitTicket/:ticketType",
 	// 	name: "Submit New Ticket",

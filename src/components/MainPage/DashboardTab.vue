@@ -26,14 +26,17 @@
 	</v-card>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const productLink = ref("");
-
-function navigateToProductPage() {
-	if (this.productLink.includes("https://"))
-		window.location.replace(this.productLink);
-	else window.location.replace("https://" + this.productLink);
-}
+<script>
+export default {
+	data() {
+		return {
+			productLink: "",
+		};
+	},
+	methods: {
+		navigateToProductPage() {
+			window.location.replace(this.productLink);
+		},
+	},
+};
 </script>

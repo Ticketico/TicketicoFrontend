@@ -67,9 +67,10 @@ function checkErrorTypeAndShowProperNotification(error) {
 	}
 }
 
-function storeUserData({ id, username, is_admin, product_id }) {
+function storeUserData({ id, username, role, product_id }) {
 	localStorage.setItem("myId", id);
 	localStorage.setItem("myUsername", username);
-	localStorage.setItem("myIsAdmin", is_admin);
+	localStorage.setItem("myRole", role);
+	if (!product_id) product_id = -1;
 	localStorage.setItem("myProductId", product_id);
 }
