@@ -1,7 +1,7 @@
 import routes from "./routes.js";
 import { createRouter, createWebHistory } from "vue-router";
 
-const routerInstance = createRouter({
+export const routerInstance = createRouter({
 	history: createWebHistory(),
 	routes,
 	scrollBehavior: (to) => {
@@ -9,6 +9,6 @@ const routerInstance = createRouter({
 	},
 });
 
-export default function (app) {
+export function initVueRouter(app) {
 	app.use(routerInstance);
 }

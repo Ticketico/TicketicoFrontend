@@ -57,7 +57,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import HandleSignup from "@/controllers/AuthControllers/SignupController.js";
+
 export default {
 	data() {
 		return {
@@ -69,32 +70,12 @@ export default {
 	},
 	methods: {
 		Signup() {
-			loading = true;
-			this.validatePassword(this.password, this.confirmPassword);
-			axios
-				.post("/auth/register", {
-					username: this.username,
-					password: this.password,
-					confirmPassord: this.confirmPassword,
-				})
-				.then(() => {
-					this.loading = false;
-					toast.success("Registered Successfully!");
-					setTimeout(() => {
-						router.push("/login");
-					}, 1000);
-				})
-				.catch(() => {
-					this.loading = false;
-					toast.error("Something went wrong!");
-				});
-		},
-		validatePassword(password, confirmPassord) {
-			const regex =
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
-			if (!regex.test(password)) throw "please choose a stronger password!";
-			if (password !== confirmPassord)
-				throw "confirmation password does not match!";
+			HandleSignup(
+				this.username,
+				this.password,
+				this.confirmPassword,
+				this.loading
+			);
 		},
 	},
 };

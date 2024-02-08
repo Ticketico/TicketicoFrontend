@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import RegisterProduct from "@/pages/ProductProfile/RegisterProduct.vue";
-import AdminProductPage from "@/pages/ProductProfile/AdminProductPage.vue";
-import AllAdminTickets from "@/pages/Tickets/AllAdminTickets.vue";
+import RegisterProduct from "@/views/ProductProfile/RegisterProduct.vue";
+import AdminProductPage from "@/views/ProductProfile/AdminProductPage.vue";
+import AllAdminTickets from "@/views/Tickets/AllAdminTickets.vue";
 
 export default {
 	components: {

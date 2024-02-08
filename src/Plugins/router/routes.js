@@ -1,22 +1,22 @@
 // Index
-const MainPage = () => import("@/pages/MainPage.vue");
+const MainPage = () => import("@/views/MainPage.vue");
 
 //Authentication
-const Login = () => import("@/pages/Auth/Login.vue");
-const Signup = () => import("@/pages/Auth/Signup.vue");
+const Login = () => import("@/views/Auth/Login.vue");
+const Signup = () => import("@/views/Auth/Signup.vue");
 
 //Product
-const MyProduct = () => import("@/pages/ProductProfile/MyProduct.vue");
+const MyProduct = () => import("@/views/ProductProfile/MyProduct.vue");
 const UniqueProductPage = () =>
-	import("@/pages/ProductProfile/UniqueProductPage.vue");
-const EditProduct = () => import("@/pages/ProductProfile/EditProduct.vue");
+	import("@/views/ProductProfile/UniqueProductPage.vue");
+const EditProduct = () => import("@/views/ProductProfile/EditProduct.vue");
 
 //Tickets
-const Ticket = () => import("@/pages/Tickets/Ticket.vue");
-const CreateTicket = () => import("@/pages/Tickets/CreateTicket.vue");
+const Ticket = () => import("@/views/Tickets/Ticket.vue");
+const CreateTicket = () => import("@/views/Tickets/CreateTicket.vue");
 
 //404 Page
-const PageNotFound = () => import("@/pages/404/NotFoundPage.vue");
+const PageNotFound = () => import("@/views/404/NotFoundPage.vue");
 
 const routes = [
 	{
