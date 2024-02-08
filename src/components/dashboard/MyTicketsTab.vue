@@ -1,87 +1,59 @@
 <template>
-	<v-data-table-virtual
-		:loading="loading"
-		:headers="headers"
-		:items="boats"
-		height="400"
-		item-value="title"
-	></v-data-table-virtual>
+	<v-container>
+		<v-row>
+			<v-col v-for="ticket in ticketsList" :key="ticket">
+				<v-card class="mx-auto" max-width="344">
+					<v-card-title> Ticket Title: Top western road trips </v-card-title>
+
+					<v-card-subtitle> CreatedAt:adfadsf </v-card-subtitle>
+					<v-card-subtitle> Deadline:asdfkmadslfk </v-card-subtitle>
+
+					<v-card-actions>
+						<v-btn color="orange-lighten-2" variant="text"> Show </v-btn>
+						<v-btn
+							color="orange-lighten-2"
+							variant="text"
+							@click="showDescription(ticket.id)"
+						>
+							Description
+						</v-btn>
+					</v-card-actions>
+				</v-card>
+			</v-col>
+		</v-row>
+	</v-container>
+	<v-dialog v-model="showDialog" width="auto">
+		<v-card>
+			<v-card-text>{{ descriptionOfChosenTicket }}</v-card-text>
+			<v-card-actions>
+				<v-btn color="primary" block @click="showDialog = false">Ok</v-btn>
+			</v-card-actions>
+		</v-card>
+	</v-dialog>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			loading: false,
-			headers: [
-				{ title: "Ticket Title", align: "start", key: "title" },
-				{ title: "Ticket Id", align: "end", key: "id" },
-				{ title: "Created At ", align: "end", key: "created_at" },
-				{ title: "Deadline", align: "end", key: "deadline" },
+			ticketsList: [
+				{
+					id: 1,
+					description: "this is 1",
+				},
+				{ id: 2, description: "this is 2" },
 			],
-			boats: [
-				{
-					title: "idster",
-					id: 35,
-					created_at: 22,
-					deadline: 300000,
-				},
-				{
-					title: "OceanMaster",
-					id: 25,
-					created_at: 35,
-					deadline: 500000,
-				},
-				{
-					title: "Voyager",
-					id: 20,
-					created_at: 45,
-					deadline: 700000,
-				},
-				{
-					title: "WaveRunner",
-					id: 40,
-					created_at: 19,
-					deadline: 250000,
-				},
-				{
-					title: "SeaBreeze",
-					id: 28,
-					created_at: 31,
-					deadline: 450000,
-				},
-				{
-					title: "HarborGuard",
-					id: 18,
-					created_at: 50,
-					deadline: 800000,
-				},
-				{
-					title: "SlickFin",
-					id: 33,
-					created_at: 24,
-					deadline: 350000,
-				},
-				{
-					title: "StormBreaker",
-					id: 22,
-					created_at: 38,
-					deadline: 600000,
-				},
-				{
-					title: "WindSail",
-					id: 15,
-					created_at: 55,
-					deadline: 900000,
-				},
-				{
-					title: "FastTide",
-					id: 37,
-					created_at: 20,
-					deadline: 280000,
-				},
-			],
+			showDialog: false,
+			descriptionOfChosenTicket: "",
 		};
+	},
+	methods: {
+		showDescription(ticketId) {
+			this.showDialog = true;
+			this.descriptionOfChosenTicket = this.ticketsList.filter(
+				(ticket) => ticket.id === ticketId
+			)[0].description;
+		},
 	},
 };
 </script>
