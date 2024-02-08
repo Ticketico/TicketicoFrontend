@@ -28,7 +28,7 @@
 		></v-text-field>
 
 		<v-btn
-			@click="login"
+			@click="Login"
 			block
 			class="mb-5"
 			color="blue"
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import HandleLogin from "@/controllers/AuthControllers/LoginController.js";
 export default {
 	data() {
 		return {
@@ -57,23 +57,8 @@ export default {
 		};
 	},
 	methods: {
-		login() {
-			this.loading = true;
-			axios
-				.post("/auth/login", {
-					username: this.username,
-					password: this.password,
-				})
-				.then((res) => {
-					this.loading = false;
-					setTimeout(() => {
-						this.$router.push("/dashboard");
-					}, 500);
-				})
-				.catch((err) => {
-					console.log(err);
-					this.loading = false;
-				});
+		Login() {
+			HandleLogin(this.username, this.password, this.loading);
 		},
 	},
 };

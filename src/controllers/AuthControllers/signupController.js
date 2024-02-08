@@ -18,7 +18,7 @@ function HandleSignup(username, password, confirmPassword, loading) {
 		})
 		.catch((err) => {
 			loading = false;
-			showProperErrorMessage(err);
+			checkErrorTypeAndShowProperNotification(err);
 		});
 }
 
@@ -43,20 +43,10 @@ function moveToLoginPage() {
 		router.push("/login");
 	}, 1000);
 }
-function showProperErrorMessage(error) {
+function checkErrorTypeAndShowProperNotification(error) {
 	switch (error.response.data.message) {
-		case "UAE":
-			toast("Username Already Exists!", {
-				type: "error",
-			});
-			break;
 		case "NEF":
 			toast("Please Fill The Form!", {
-				type: "error",
-			});
-			break;
-		case "ISE":
-			toast("Something Went Wrong!", {
 				type: "error",
 			});
 			break;
@@ -71,11 +61,24 @@ function showProperErrorMessage(error) {
 					autoClose: 6000,
 				}
 			);
+			break;
 		case "PAICDM":
-			toast("Password and Its Confirmation Does Not Match!", {
+			toast("Passwords Do Not Match!", {
 				type: "error",
 			});
 			break;
+		case "UAE":
+			toast("Username Already Exists!", {
+				type: "error",
+			});
+			break;
+
+		case "ISE":
+			toast("Something Went Wrong!", {
+				type: "error",
+			});
+			break;
+
 		default:
 			toast("Something Went Wrong!", {
 				type: "error",

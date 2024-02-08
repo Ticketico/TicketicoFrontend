@@ -58,7 +58,6 @@
 
 <script>
 import HandleSignup from "@/controllers/AuthControllers/SignupController.js";
-
 export default {
 	data() {
 		return {
