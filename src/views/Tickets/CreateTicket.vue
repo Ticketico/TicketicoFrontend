@@ -26,7 +26,7 @@
 <script>
 //DATE PICKER
 
-import submitNewTicket from "@/controllers/Ticket/createTicket.js";
+import submitNewTicket from "@/controllers/createTicket.js";
 
 export default {
 	data() {

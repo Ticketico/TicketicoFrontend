@@ -8,13 +8,14 @@ function HandleLogin(username, password, loading) {
 	loading = true;
 	axios
 		.post(getLoginRequestUrl(), getLoginRequestBody(username, password))
-		.then(() => {
+		.then((res) => {
 			loading = false;
 			showSuccessMessage();
+			storeUserData(res.data.message);
 			moveToDashboardPage();
 		})
 		.catch((err) => {
-			this.loading = false;
+			loading = false;
 			checkErrorTypeAndShowProperNotification(err);
 		});
 }
@@ -64,4 +65,11 @@ function checkErrorTypeAndShowProperNotification(error) {
 			});
 			break;
 	}
+}
+
+function storeUserData({ id, username, is_admin, product_id }) {
+	localStorage.setItem("myId", id);
+	localStorage.setItem("myUsername", username);
+	localStorage.setItem("myIsAdmin", is_admin);
+	localStorage.setItem("myProductId", product_id);
 }

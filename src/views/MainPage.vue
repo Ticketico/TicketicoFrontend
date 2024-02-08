@@ -20,23 +20,13 @@
 	<RegisterNewProductTab v-else-if="currentTab == 'Register New Product'" />
 </template>
 
-<script>
-import DashboardTab from "@/components/dashboard/DashboardTab.vue";
-import EditProfileTab from "@/components/dashboard/EditProfileTab.vue";
-import MyTicketsTab from "@/components/dashboard/MyTicketsTab.vue";
-import RegisterNewProductTab from "@/components/dashboard/RegisterNewProductTab.vue";
+<script setup>
+import { ref } from "vue";
 
-export default {
-	components: {
-		DashboardTab,
-		EditProfileTab,
-		MyTicketsTab,
-		RegisterNewProductTab,
-	},
-	data() {
-		return {
-			currentTab: "Dashboard",
-		};
-	},
-};
+import DashboardTab from "@/components/MainPage/DashboardTab.vue";
+import EditProfileTab from "@/components/MainPage/EditProfileTab.vue";
+import MyTicketsTab from "@/components/MainPage/MyTicketsTab.vue";
+import RegisterNewProductTab from "@/components/MainPage/RegisterNewProductTab.vue";
+
+const currentTab = ref("Dashboard");
 </script>

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import RegisterProduct from "@/views/ProductProfile/RegisterProduct.vue";
 import AdminProductPage from "@/views/ProductProfile/AdminProductPage.vue";
 import AllAdminTickets from "@/views/Tickets/AllAdminTickets.vue";
 
