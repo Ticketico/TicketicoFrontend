@@ -1,5 +1,5 @@
 // Index
-const ProductLink = () => import("@/pages/ProductLink.vue");
+const MainPage = () => import("@/pages/MainPage.vue");
 
 //Authentication
 const Login = () => import("@/pages/Auth/Login.vue");
@@ -42,7 +42,7 @@ const routes = [
 	{
 		path: "/dashboard",
 		name: "Dashboard",
-		component: ProductLink,
+		component: MainPage,
 	},
 	{
 		path: "/userInfo",

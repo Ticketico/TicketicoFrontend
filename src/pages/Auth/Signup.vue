@@ -1,81 +1,100 @@
-<template style="background-color: #1e1d2e">
-	<div class="w-25 mx-auto my-auto">
-		<h1 class="mt-5 text-center mb-5" style="font-size: 80px">TicketMaster</h1>
-		<div class="card py-4 px-4 mt-5">
-			<h5 class="title mb-5 ml-auto h1">Signup</h5>
-			<div class="row mb-4">
-				<div class="col-12">
-					<label class="text-white">Username:</label>
-					<input
-						v-model="username"
-						class="form-control"
-						placeholder="Please Choose a Username ..."
-						type="username"
-					/>
-				</div>
-			</div>
-			<div class="row mb-4">
-				<div class="col-12">
-					<label class="text-white">Password:</label>
-					<input
-						v-model="password"
-						class="form-control"
-						placeholder="Please Choose a Password ..."
-						type="password"
-					/>
-				</div>
-			</div>
-			<div class="row mb-5">
-				<div class="col-12">
-					<label class="text-white">reEnter Password:</label>
-					<input
-						v-model="rePassword"
-						class="form-control"
-						placeholder="Please reEnter Your Password ..."
-						type="password"
-					/>
-				</div>
-			</div>
-			<button
-				@click="Signup"
-				:disabled="!username || !password || !rePassword"
-				class="btn btn-primary mr-3"
-			>
-				<div v-if="!loading">SignUp</div>
-				<div v-else><i class="fa fa-spinner fa-spin"></i>Loading</div>
-			</button>
-			<router-link to="/login">Already have an Account!</router-link>
-		</div>
-	</div>
+<template>
+	<v-card
+		class="mx-auto pa-12 mt-10"
+		elevation="8"
+		max-width="500"
+		rounded="xl"
+		:loading="loading"
+	>
+		<div class="text-h2 mb-10">Signup</div>
+
+		<v-text-field
+			clearable
+			density="comfortable"
+			placeholder="username"
+			prepend-inner-icon="mdi-account-outline"
+			variant="outlined"
+			v-model="username"
+		></v-text-field>
+
+		<v-text-field
+			clearable
+			type="password"
+			density="comfortable"
+			placeholder="password"
+			prepend-inner-icon="mdi-lock-outline"
+			variant="outlined"
+			v-model="password"
+		></v-text-field>
+
+		<v-text-field
+			clearable
+			type="password"
+			density="comfortable"
+			placeholder="confirm password"
+			prepend-inner-icon="mdi-lock-outline"
+			variant="outlined"
+			v-model="confirmPassword"
+		></v-text-field>
+
+		<v-btn
+			@click="Signup"
+			block
+			class="mb-5"
+			color="blue"
+			size="large"
+			variant="elevated"
+		>
+			Sign up
+		</v-btn>
+
+		<v-card-text class="text-center">
+			<a class="text-blue text-decoration-none text-h6" href="/login">
+				Already Have an Account <v-icon icon="mdi-chevron-right"></v-icon>
+			</a>
+		</v-card-text>
+	</v-card>
 </template>
 
 <script>
 import axios from "axios";
-import HandleSignup from "@/controllers/Auth/signupFunctions.js";
 export default {
 	data() {
 		return {
 			username: "",
 			password: "",
-			rePassword: "",
+			confirmPassword: "",
 			loading: false,
 		};
 	},
 	methods: {
 		Signup() {
-			try {
-				HandleSignup(
-					this.username,
-					this.password,
-					this.rePassword,
-					this.loading,
-					this.$toast,
-					this.$router
-				);
-			} catch (error) {
-				this.loading = false;
-				this.$toast.error(error);
-			}
+			loading = true;
+			this.validatePassword(this.password, this.confirmPassword);
+			axios
+				.post("/auth/register", {
+					username: this.username,
+					password: this.password,
+					confirmPassord: this.confirmPassword,
+				})
+				.then(() => {
+					this.loading = false;
+					toast.success("Registered Successfully!");
+					setTimeout(() => {
+						router.push("/login");
+					}, 1000);
+				})
+				.catch(() => {
+					this.loading = false;
+					toast.error("Something went wrong!");
+				});
+		},
+		validatePassword(password, confirmPassord) {
+			const regex =
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+			if (!regex.test(password)) throw "please choose a stronger password!";
+			if (password !== confirmPassord)
+				throw "confirmation password does not match!";
 		},
 	},
 };

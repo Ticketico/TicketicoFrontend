@@ -3,7 +3,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 //Initiate Plugins
-import initPlugins from "@/Plugins/initPlugins.js"
+import initPlugins from "@/plugins/initPlugins.js"
 
 //App Instantiate
 const appInstance = createApp(App);
