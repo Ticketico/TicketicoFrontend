@@ -57,7 +57,7 @@ export default {
 		};
 	},
 	methods: {
-		Login() {
+		login() {
 			this.loading = true;
 			axios
 				.post("/auth/login", {

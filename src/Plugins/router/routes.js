@@ -11,13 +11,8 @@ const UniqueProductPage = () =>
 	import("@/pages/ProductProfile/UniqueProductPage.vue");
 const EditProduct = () => import("@/pages/ProductProfile/EditProduct.vue");
 
-//User
-const UserInfo = () => import("@/pages/UserProfile/UserInfo.vue");
-const EditUser = () => import("@/pages/UserProfile/EditUser.vue");
-
 //Tickets
 const Ticket = () => import("@/pages/Tickets/Ticket.vue");
-const AllUserTickets = () => import("@/pages/Tickets/AllUserTickets.vue");
 const CreateTicket = () => import("@/pages/Tickets/CreateTicket.vue");
 
 //404 Page
@@ -44,46 +39,31 @@ const routes = [
 		name: "Dashboard",
 		component: MainPage,
 	},
-	{
-		path: "/userInfo",
-		name: "My Profile",
-		component: UserInfo,
-	},
-	{
-		path: "/myTickets",
-		name: "My Tickets",
-		component: AllUserTickets,
-	},
-	{
-		path: "/myProduct",
-		name: "My Product",
-		component: MyProduct,
-	},
-	{
-		path: "/editProfile",
-		name: "Edit Profile",
-		component: EditUser,
-	},
-	{
-		path: "/editProduct/:id",
-		name: "Edit Product",
-		component: EditProduct,
-	},
-	{
-		path: "/product/:id/view",
-		name: "Business Product",
-		component: UniqueProductPage,
-	},
-	{
-		path: "/submitTicket/:ticketType",
-		name: "Submit New Ticket",
-		component: CreateTicket,
-	},
-	{
-		path: "/product/:productId/ticket/:ticketId",
-		name: "ticket",
-		component: Ticket,
-	},
+	// {
+	// 	path: "/myProduct",
+	// 	name: "My Product",
+	// 	component: MyProduct,
+	// },
+	// {
+	// 	path: "/editProduct/:id",
+	// 	name: "Edit Product",
+	// 	component: EditProduct,
+	// },
+	// {
+	// 	path: "/product/:id/view",
+	// 	name: "Business Product",
+	// 	component: UniqueProductPage,
+	// },
+	// {
+	// 	path: "/submitTicket/:ticketType",
+	// 	name: "Submit New Ticket",
+	// 	component: CreateTicket,
+	// },
+	// {
+	// 	path: "/product/:productId/ticket/:ticketId",
+	// 	name: "ticket",
+	// 	component: Ticket,
+	// },
 ];
 
 export default routes;
