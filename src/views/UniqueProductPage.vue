@@ -40,12 +40,8 @@
 				label="Enter ticket title"
 			></v-textarea>
 			<div class="mx-auto mb-10">
-				<v-card-text>Please Choose Deadline</v-card-text>
-				<v-date-picker
-					v-model="deadline"
-					color="primary"
-					elevation="24"
-				></v-date-picker>
+				<v-card-text>Please Choose Deadline:</v-card-text>
+				<VueDatePicker v-model="deadline" />
 			</div>
 			<v-card-actions>
 				<v-btn color="primary" @click="SubmitTicket">Save</v-btn>
@@ -63,8 +59,7 @@ import {
 	SubmitTicketForProduct,
 } from "@/controllers/ProductControllers/UniqueProductPageController";
 export default {
-  watch: {
-  },
+	watch: {},
 	data() {
 		return {
 			ticketSubmissionDialog: false,

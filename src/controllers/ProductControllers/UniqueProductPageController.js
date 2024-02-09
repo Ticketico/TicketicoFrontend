@@ -1,6 +1,6 @@
 import axios from "axios";
 import { routerInstance as router } from "@/plugins/vue-router";
-
+import { toast } from "vue3-toastify";
 export function HandleUniqueProductDetails(id) {
 	console.log(id);
 	axios
@@ -20,7 +20,8 @@ export function SubmitTicketForProduct(
 	deadline,
 	dialogState
 ) {
-	deadline, submitter_id, product_id;
+	const submitter_id = localStorage.getItem("myId");
+	const product_id = localStorage.getItem("thisProductId");
 	axios
 		.post("/ticket", {
 			title,
@@ -32,9 +33,12 @@ export function SubmitTicketForProduct(
 			product_id,
 		})
 		.then(() => {
+			toast("Ticket Submitted Successfully");
+			router.push(-1);
 			dialogState = false;
 		})
 		.catch(() => {
+			toast.error("Something Went Wrong");
 			dialogState = false;
 		});
 }
