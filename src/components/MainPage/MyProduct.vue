@@ -4,8 +4,8 @@
 </template>
 
 <script setup>
-import ManageMyProductTab from "@/components/RegisterOrManageProductTab/ManageMyProductTab.vue";
-import RegisterNewProductTab from "@/components/RegisterOrManageProductTab/RegisterNewProductTab.vue";
+import ManageMyProductTab from "@/components/MainPage/RegisterOrManageProductTab/ManageMyProductTab.vue";
+import RegisterNewProductTab from "@/components/MainPage/RegisterOrManageProductTab/RegisterNewProductTab.vue";
 
 import { computed } from "vue";
 

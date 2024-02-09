@@ -16,7 +16,7 @@
 
 	<DashboardTab v-if="currentTab == 'Dashboard'" />
 	<MyTicketsTab v-else-if="currentTab == 'My Tickets'" />
-	<EditProfileTab v-else-if="currentTab == 'My Profile'" />
+	<MyProfileTab v-else-if="currentTab == 'My Profile'" />
 	<MyProduct v-else-if="currentTab == 'Register/Manage Product'" />
 	
 </template>
@@ -25,7 +25,7 @@
 import { ref } from "vue";
 
 import DashboardTab from "@/components/MainPage/DashboardTab.vue";
-import EditProfileTab from "@/components/MainPage/EditProfileTab.vue";
+import MyProfileTab from "@/components/MainPage/MyProfileTab.vue";
 import MyTicketsTab from "@/components/MainPage/MyTicketsTab.vue";
 import MyProduct from "@/components/MainPage/MyProduct.vue";
 
