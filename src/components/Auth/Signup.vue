@@ -1,7 +1,7 @@
 <template>
 	<v-card
 		class="mx-auto pa-12 mt-10"
-		elevation="8"
+		elevation="3"
 		max-width="500"
 		rounded="xl"
 		:loading="loading"
@@ -38,7 +38,7 @@
 		></v-text-field>
 
 		<v-btn
-			@click="Signup"
+			@click="HandleSignup(username, password, confirmPassword, loading)"
 			block
 			class="mb-5"
 			color="blue"
@@ -47,35 +47,16 @@
 		>
 			Sign up
 		</v-btn>
-
-		<v-card-text class="text-center">
-			<a class="text-blue text-decoration-none text-h6" href="/login">
-				Already Have an Account <v-icon icon="mdi-chevron-right"></v-icon>
-			</a>
-		</v-card-text>
 	</v-card>
 </template>
 
-<script>
+<script setup>
 import HandleSignup from "@/controllers/AuthControllers/SignupController.js";
-export default {
-	data() {
-		return {
-			username: "",
-			password: "",
-			confirmPassword: "",
-			loading: false,
-		};
-	},
-	methods: {
-		Signup() {
-			HandleSignup(
-				this.username,
-				this.password,
-				this.confirmPassword,
-				this.loading
-			);
-		},
-	},
-};
+
+import {ref} from "vue"
+
+const username = ref("")
+const password = ref("")
+const confirmPassword = ref("")
+const loading = ref(false)
 </script>

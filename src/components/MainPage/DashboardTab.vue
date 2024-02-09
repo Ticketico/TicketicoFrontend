@@ -1,5 +1,5 @@
 <template>
-	<v-card class="mx-auto pa-12" elevation="10" max-width="600" rounded="large">
+	<v-card class="mx-auto pa-12" elevation="3" max-width="600" rounded="large">
 		<v-card-text class="text-h6 font-weight-bold">
 			Please Enter Product Link To Go ...</v-card-text
 		>

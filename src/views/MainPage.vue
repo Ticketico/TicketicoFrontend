@@ -5,7 +5,7 @@
 				'Dashboard',
 				'My Tickets',
 				'My Profile',
-				'Register New Product',
+				'Register/Manage Product',
 			]"
 			:key="item"
 			:value="item"
@@ -17,7 +17,8 @@
 	<DashboardTab v-if="currentTab == 'Dashboard'" />
 	<MyTicketsTab v-else-if="currentTab == 'My Tickets'" />
 	<EditProfileTab v-else-if="currentTab == 'My Profile'" />
-	<RegisterNewProductTab v-else-if="currentTab == 'Register New Product'" />
+	<MyProduct v-else-if="currentTab == 'Register/Manage Product'" />
+	
 </template>
 
 <script setup>
@@ -26,7 +27,7 @@ import { ref } from "vue";
 import DashboardTab from "@/components/MainPage/DashboardTab.vue";
 import EditProfileTab from "@/components/MainPage/EditProfileTab.vue";
 import MyTicketsTab from "@/components/MainPage/MyTicketsTab.vue";
-import RegisterNewProductTab from "@/components/MainPage/RegisterNewProductTab.vue";
+import MyProduct from "@/components/MainPage/MyProduct.vue";
 
 const currentTab = ref("Dashboard");
 </script>

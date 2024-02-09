@@ -1,7 +1,7 @@
 <template>
 	<v-card
 		class="mx-auto pa-12 mt-10"
-		elevation="8"
+		elevation="3"
 		max-width="500"
 		rounded="xl"
 		:loading="loading"
@@ -28,7 +28,7 @@
 		></v-text-field>
 
 		<v-btn
-			@click="Login"
+			@click="HandleLogin(username, password, loading)"
 			block
 			class="mb-5"
 			color="blue"
@@ -37,29 +37,15 @@
 		>
 			Log In
 		</v-btn>
-
-		<v-card-text class="text-center">
-			<a class="text-blue text-decoration-none text-h6" href="/signup">
-				Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
-			</a>
-		</v-card-text>
 	</v-card>
 </template>
 
-<script>
+<script setup>
 import HandleLogin from "@/controllers/AuthControllers/LoginController.js";
-export default {
-	data() {
-		return {
-			username: "",
-			password: "",
-			loading: false,
-		};
-	},
-	methods: {
-		Login() {
-			HandleLogin(this.username, this.password, this.loading);
-		},
-	},
-};
+
+import { ref } from "vue";
+
+const username = ref("");
+const password = ref("");
+const loading = ref(false);
 </script>

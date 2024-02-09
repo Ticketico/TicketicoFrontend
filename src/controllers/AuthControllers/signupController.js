@@ -40,7 +40,7 @@ function showSuccessMessage() {
 }
 function moveToLoginPage() {
 	setTimeout(() => {
-		router.push("/login");
+		location.reload();
 	}, 1000);
 }
 function checkErrorTypeAndShowProperNotification(error) {
