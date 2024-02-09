@@ -2,9 +2,9 @@ import "vue3-toastify/dist/index.css";
 
 import axios from "axios";
 import { toast } from "vue3-toastify";
-import { routerInstance as router } from "@/plugins/router/vue-router";
+import { routerInstance as router } from "@/plugins/vue-router";
 
-function HandleLogin(username, password, loading) {
+export default function HandleLogin(username, password, loading) {
 	loading = true;
 	axios
 		.post(getLoginRequestUrl(), getLoginRequestBody(username, password))
@@ -19,8 +19,6 @@ function HandleLogin(username, password, loading) {
 			checkErrorTypeAndShowProperNotification(err);
 		});
 }
-
-export default HandleLogin;
 
 function getLoginRequestUrl() {
 	return "/auth/login";

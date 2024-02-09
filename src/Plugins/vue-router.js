@@ -1,4 +1,4 @@
-import routes from "./routes.js";
+import routes from "@/routes.js";
 import { createRouter, createWebHistory } from "vue-router";
 
 export const routerInstance = createRouter({

@@ -1,6 +1,7 @@
 // Index
 const MainPage = () => import("@/views/MainPage.vue");
 const Auth = () => import("@/views/Auth.vue");
+const UniqueProductPage = () => import("@/views/UniqueProductPage.vue")
 
 const routes = [
 	{
@@ -18,11 +19,11 @@ const routes = [
 		name: "Dashboard",
 		component: MainPage,
 	},
-	// {
-	// 	path: "/product/:id/view",
-	// 	name: "Business Product",
-	// 	component: UniqueProductPage,
-	// },
+	{
+		path: "/product/:id",
+		name: "Product",
+		component: UniqueProductPage,
+	},
 	// {
 	// 	path: "/submitTicket/:ticketType",
 	// 	name: "Submit New Ticket",

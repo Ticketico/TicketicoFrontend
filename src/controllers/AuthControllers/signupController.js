@@ -2,9 +2,14 @@ import "vue3-toastify/dist/index.css";
 
 import axios from "axios";
 import { toast } from "vue3-toastify";
-import { routerInstance as router } from "@/plugins/router/vue-router";
+import { routerInstance as router } from "@/plugins/vue-router";
 
-function HandleSignup(username, password, confirmPassword, loading) {
+export default function HandleSignup(
+	username,
+	password,
+	confirmPassword,
+	loading
+) {
 	loading = true;
 	axios
 		.post(
@@ -21,8 +26,6 @@ function HandleSignup(username, password, confirmPassword, loading) {
 			checkErrorTypeAndShowProperNotification(err);
 		});
 }
-
-export default HandleSignup;
 
 function getSignupRequestUrl() {
 	return "/auth/signup";

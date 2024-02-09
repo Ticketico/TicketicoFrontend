@@ -21,7 +21,6 @@ export default {
 			title: "",
 			description:
 				"The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.",
-			picture: "",
 		};
 	},
 	methods: {
