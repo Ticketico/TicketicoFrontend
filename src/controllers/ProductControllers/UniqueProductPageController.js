@@ -1,8 +1,7 @@
 import axios from "axios";
 import { routerInstance as router } from "@/plugins/vue-router";
 import { toast } from "vue3-toastify";
-export function HandleUniqueProductDetails(id) {
-	console.log(id);
+export function getAllProductDataAndStore(id) {
 	axios
 		.get(`/product/${id}`)
 		.then((res) => {
@@ -13,7 +12,7 @@ export function HandleUniqueProductDetails(id) {
 		});
 }
 
-export function SubmitTicketForProduct(
+export function submitTicketForProduct(
 	title,
 	description,
 	type,
@@ -33,13 +32,15 @@ export function SubmitTicketForProduct(
 			product_id,
 		})
 		.then(() => {
+			dialogState = false;
 			toast("Ticket Submitted Successfully");
 			router.push(-1);
-			dialogState = false;
 		})
 		.catch(() => {
-			toast.error("Something Went Wrong");
 			dialogState = false;
+			toast("Something Went Wrong", {
+				type: "error",
+			});
 		});
 }
 
@@ -52,3 +53,5 @@ function storeThisProductData(productData) {
 function moveToDashboardPage() {
 	router.push("/dashboard");
 }
+
+function getAllDataAndStore(id) {}

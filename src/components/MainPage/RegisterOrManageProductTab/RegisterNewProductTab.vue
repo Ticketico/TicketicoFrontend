@@ -9,12 +9,16 @@
 				v-model="description"
 			></v-textarea>
 
-			<v-btn block color="blue" class="mt-2">Add Product</v-btn>
+			<v-btn @click="createNewProduct" block color="blue" class="mt-2"
+				>Add Product</v-btn
+			>
 		</v-form>
 	</v-sheet>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
 	data() {
 		return {
@@ -24,8 +28,12 @@ export default {
 		};
 	},
 	methods: {
-		show() {
-			console.log(this.imageUrl);
+		createNewProduct() {
+			axios.post("/product", {
+				title: this.title,
+				description: this.description,
+				admin_id: localStorage.getItem("myId"),
+			});
 		},
 	},
 };

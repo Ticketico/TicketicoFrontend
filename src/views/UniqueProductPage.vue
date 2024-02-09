@@ -12,21 +12,19 @@
 		</v-card-text>
 		<v-card-actions>
 			<div class="mx-auto text-h3">
-				<v-btn color="orange" class="text-h4" @click="submitBug">
-					<v-icon icon="mdi-bug"></v-icon>
-				</v-btn>
-				<v-btn color="orange" class="text-h4" @click="submitInformation">
-					<v-icon icon="mdi-information"></v-icon>
-				</v-btn>
-				<v-btn color="orange" class="text-h4" @click="submitQuestion">
-					<v-icon icon="mdi-help"></v-icon>
+				<v-btn
+					v-for="type in ['bug', 'information', 'help']"
+					color="orange"
+					class="text-h4"
+					@click="setTicketType(type)"
+				>
+					<v-icon :icon="`mdi-${type}`"></v-icon>
 				</v-btn>
 			</div>
 		</v-card-actions>
 	</v-card>
 
-	<v-dialog v-model="ticketSubmissionDialog" width="700px">
-		this is dadlinge {{ deadline }}
+	<v-dialog v-model="ticketSubmitionDialog" width="700px">
 		<v-card class="px-5">
 			<v-card-title class="mb-5 mt-5"> Submit New Ticket </v-card-title>
 			<v-text-field
@@ -44,8 +42,8 @@
 				<VueDatePicker v-model="deadline" />
 			</div>
 			<v-card-actions>
-				<v-btn color="primary" @click="SubmitTicket">Save</v-btn>
-				<v-btn color="primary" @click="ticketSubmissionDialog = false"
+				<v-btn color="primary" @click="saveTicket">Save</v-btn>
+				<v-btn color="primary" @click="ticketSubmitionDialog = false"
 					>Close</v-btn
 				>
 			</v-card-actions>
@@ -55,22 +53,22 @@
 
 <script>
 import {
-	HandleUniqueProductDetails,
-	SubmitTicketForProduct,
+	getAllProductDataAndStore,
+	submitTicketForProduct,
 } from "@/controllers/ProductControllers/UniqueProductPageController";
 export default {
-	watch: {},
 	data() {
 		return {
-			ticketSubmissionDialog: false,
+			thisProductId: this.$route.params.id,
 			ticketType: "",
 			ticketTitle: "",
 			ticketDescription: "",
-			deadline: new Date().toISOString,
+			deadline: "",
+			ticketSubmitionDialog: false,
 		};
 	},
 	mounted() {
-		HandleUniqueProductDetails(this.$route.params.id);
+		getAllProductDataAndStore(this.thisProductId);
 	},
 	computed: {
 		thisProductTitle() {
@@ -81,29 +79,18 @@ export default {
 		},
 	},
 	methods: {
-		submitBug() {
-			this.ticketType = "bug";
-			this.ticketSubmissionDialog = true;
+		setTicketType(type) {
+			this.ticketType = type;
+			this.ticketSubmitionDialog = true;
 		},
-		submitInformation() {
-			this.ticketType = "information";
-			this.ticketSubmissionDialog = true;
-		},
-		submitQuestion() {
-			this.ticketType = "question";
-			this.ticketSubmissionDialog = true;
-		},
-		SubmitTicket() {
-			SubmitTicketForProduct(
+		saveTicket() {
+			submitTicketForProduct(
 				this.ticketTitle,
 				this.ticketDescription,
 				this.ticketType,
 				this.deadline,
-				this.ticketSubmissionDialog
+				this.ticketSubmitionDialog
 			);
-		},
-		cl(e) {
-			console.log(e);
 		},
 	},
 };
