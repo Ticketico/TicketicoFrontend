@@ -4,15 +4,22 @@ import axios from "axios";
 import { toast } from "vue3-toastify";
 import { routerInstance as router } from "@/plugins/vue-router";
 
-export default function HandleLogin(username, password, loading) {
+export default function HandleSignup(
+	username,
+	password,
+	confirmPassword,
+	loading
+) {
 	loading = true;
 	axios
-		.post(getLoginRequestUrl(), getLoginRequestBody(username, password))
-		.then((res) => {
+		.post(
+			getSignupRequestUrl(),
+			getSignupRequestBody(username, password, confirmPassword)
+		)
+		.then(() => {
 			loading = false;
 			showSuccessMessage();
-			storeUserData(res.data.message);
-			moveToDashboardPage();
+			moveToLoginPage();
 		})
 		.catch((err) => {
 			loading = false;
@@ -20,22 +27,23 @@ export default function HandleLogin(username, password, loading) {
 		});
 }
 
-function getLoginRequestUrl() {
-	return "/auth/login";
+function getSignupRequestUrl() {
+	return "/auth/signup";
 }
 
-function getLoginRequestBody(username, password) {
+function getSignupRequestBody(username, password, confirmPassword) {
 	return {
 		username,
 		password,
+		confirmPassword,
 	};
 }
 function showSuccessMessage() {
-	toast("Login Successfully ...");
+	toast("Signup Successfully ...");
 }
-function moveToDashboardPage() {
+function moveToLoginPage() {
 	setTimeout(() => {
-		router.push("/dashboard");
+		location.reload();
 	}, 1000);
 }
 function checkErrorTypeAndShowProperNotification(error) {
@@ -45,8 +53,25 @@ function checkErrorTypeAndShowProperNotification(error) {
 				type: "error",
 			});
 			break;
-		case "UOPIW":
-			toast("Username Or Password Is Wrong!", {
+		case "PAIW":
+			toast("Please Choose a Stronger Password!", {
+				type: "error",
+			});
+			toast(
+				"Your password must contain numbers, uppercases, lowercases, special characters!",
+				{
+					type: "error",
+					autoClose: 6000,
+				}
+			);
+			break;
+		case "PAICDM":
+			toast("Passwords Do Not Match!", {
+				type: "error",
+			});
+			break;
+		case "UAE":
+			toast("Username Already Exists!", {
 				type: "error",
 			});
 			break;
@@ -63,12 +88,4 @@ function checkErrorTypeAndShowProperNotification(error) {
 			});
 			break;
 	}
-}
-
-function storeUserData({ id, username, role, product_id }) {
-	localStorage.setItem("myId", id);
-	localStorage.setItem("myUsername", username);
-	localStorage.setItem("myRole", role);
-	if (!product_id) product_id = -1;
-	localStorage.setItem("myProductId", product_id);
 }
